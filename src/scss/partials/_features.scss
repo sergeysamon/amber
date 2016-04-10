@@ -1,0 +1,33 @@
+.features {
+  h2{
+    text-align: center;
+  }
+  .features-blok {
+    padding: 30px 0;
+    float: left;
+    width: 50%;
+    .features-blok_icon {
+      float: left;
+      width: 20%;
+      img{
+        //display: block;
+        //margin:0 auto;
+      }
+    }
+    .features-blok_text {
+      margin-left:20%;
+      padding-right: 40px;
+      h3{
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 43px;
+      }
+      p{
+        color: $color_very_dark_grayish_blue;
+        font-size: 14px;
+        font-weight: 300;
+      }
+    }
+  }
+
+}

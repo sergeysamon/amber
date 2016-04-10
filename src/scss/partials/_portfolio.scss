@@ -1,0 +1,122 @@
+.portfolio {
+  text-align: center;
+  background: url("../img/fake-740.png") center no-repeat;
+  background-size: cover;
+  .portfolio-carusel {
+    height: 334px;
+    width: 100%;
+    .owl-carousel {
+      height: 334px;
+      div .item {
+        height: 290px;
+        width: 290px;
+        margin: 0 auto;
+        position: relative;
+
+        &:hover{
+          .item-bottom{
+            opacity: 0;
+          }
+          .item-links{
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+        .item-bottom {
+          transition: 0.3s opacity;
+          height: 70px;
+          position: absolute;
+          padding: 0 20px 20px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          p {
+            color: #02baab;
+            font-size: 11px;
+            font-weight: 300;
+          }
+          .item-text {
+            height: 100%;
+            h4 {
+              color: white;
+              font-size: 14px;
+              font-weight: 300;
+              line-height: 24px;
+            }
+            p {
+              line-height: 20px;
+            }
+            float: left;
+            width: 90%;
+            text-align: left;
+          }
+          .item-likes {
+            float: right;
+            height: 100%;
+            width: 10%;
+            background: url("../../img/heart.png") no-repeat 50% 20%;
+            background-size: 13px 11px;
+            p {
+              margin-top: 25px;
+            }
+          }
+        }
+        .item-links {
+          transition: 1s opacity;
+
+          visibility: hidden;
+          opacity: 0;
+          height: 100%;
+          width: 100%;
+          background-image: url('../img/fake-290.png');
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          ul {
+            li {
+              display: block;
+              width: 40px;
+              height: 40px;
+              background: $color_strong_cyan;
+              border-radius: 50%;
+              margin: 11px 0;
+              //overflow: hidden;
+              .item-heart {
+                background: url("../img/heart.png") no-repeat 50% 50%;
+              }
+              .item-zoom{
+                background: url("../img/zoom.png") no-repeat 50% 50%;
+              }
+              .item-link {
+                background: url("../img/link.png") no-repeat 50% 50%;
+              }
+              a {
+                //transition: 0.3s opacity;
+                display: block;
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+              }
+            }
+          }
+        }
+      }
+      .owl-nav {
+        div {
+          display: inline-block;
+          font-size: 0;
+          width: 7px;
+          height: 14px;
+          margin: 0 16px;
+        }
+        .owl-prev {
+          background: url("../img/arrow-l.png");
+        }
+        .owl-next {
+          background: url("../img/arrow-r.png");
+        }
+
+      }
+    }
+  }
+}

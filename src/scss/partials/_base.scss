@@ -1,0 +1,110 @@
+@import "../modules/colors";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 0;
+  border: none;
+
+}
+
+a {
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+  &:active, &:visited {
+    color: black;
+  }
+}
+
+ul, li {
+  list-style: none;
+}
+
+.page-wrap {
+  width: 100%;
+  min-width: 100%;
+  position: relative;
+
+  //text-align: center;
+}
+
+/* For modern browsers */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {
+  *zoom: 1;
+}
+
+.block-p{
+  padding: 100px 0;
+}
+
+.wrap-blocks {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.sub-header--after_w {
+  color: #3b4954;
+  font-size: 36px;
+  font-weight: 300;
+  margin: 0 0 30px;
+  &:after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 5px;
+    background-color: #fff;
+    margin: 30px auto 51px;
+  }
+}
+.sub-header {
+  color: #3b4954;
+  font-size: 36px;
+  font-weight: 300;
+  margin: 0 0 30px;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 5px;
+    background-color: #eee;
+    margin: 30px auto 51px;
+  }
+}
+
+.text-blocks {
+  color: $color_text_1;
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 46px;
+}
+.text-blocks--white{
+  color: $color_white;
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 46px;
+}
+

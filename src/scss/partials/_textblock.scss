@@ -1,0 +1,45 @@
+
+.textblock {
+.block-p{
+  padding: 60px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  width: 100%;
+  background: $color_strong_cyan;
+  text-align: left;
+  .textblock-wrap {
+    float: left;
+    &:first-child {
+      width: 70%;
+    }
+    &:last-child {
+      width: 30%;
+    }
+    .textblock-text {
+      color: white;
+      font-size: 24px;
+      font-weight: 300;
+    }
+    .textblock-button {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: white;
+      background: $color_strong_cyan;
+      text-align: left;
+      text-indent: 2em;
+      width: 170px;
+      height: 40px;
+      border: 3px solid white;
+      background: url("../img/arrow_button.png") no-repeat 90% 50%;
+      transition: 0.3s color, background;
+      &:hover {
+        background: white;
+        color: $color_strong_cyan;
+      }
+    }
+
+  }
+}
