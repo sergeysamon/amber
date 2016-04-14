@@ -1,0 +1,168 @@
+@import "../modules/colors";
+
+.footer {
+  background: $color_background_1;
+  padding: 50px 0;
+
+
+  .footer-row {
+    .footer-column {
+
+      width: 25%;
+      float: left;;
+      //margin-right: -0.36em;
+      text-align: left;
+      color: #85939f;
+      padding-top: 50px;
+      padding-left: 20px;
+      border-top: 15px solid #7827a9;
+      //border-right: 15px solid #7827a9;;
+      &:nth-child(4n+2) {
+        border-color: #0c8fcc;
+      }
+      &:nth-child(4n+3) {
+        border-color: #de1c5c;
+      }
+      &:nth-child(4n+4) {
+        border-color: #ffae00;
+      }
+
+      h3 {
+        color: white;
+        font-size: 22px; /* Приближение из-за подстановки шрифтов */
+        font-weight: 300;
+        line-height: 35px; /* Приближение из-за подстановки шрифтов */
+        margin-bottom: 40px;
+      }
+      .contacts {
+        margin-left: 5px;
+        li {
+          list-style-image: url("../img/phone.png");
+          &:first-child {
+            list-style-image: url("../img/flag.png");
+          }
+          &:last-child {
+            list-style-image: url("../img/mail.png");
+          }
+
+          font-size: 12px; /* Приближение из-за подстановки шрифтов */
+          font-weight: 300;
+          line-height: 24px;
+          margin: 15px 0;
+          padding: 0 10px;
+          strong {
+            color: white;
+
+          }
+        }
+        .footer-map {
+          //margin-left: -20px;
+        }
+      }
+      .tweets {
+        li {
+          list-style-image: url("../img/svg/tweat.svg");
+          p {
+            font-size: 12px; /* Приближение из-за подстановки шрифтов */
+            font-weight: 300;
+            line-height: 24px;
+            color: #ffffff;
+            a {
+              color: $color_strong_cyan;
+              text-decoration: none;
+            }
+            &.time-ago {
+              color: #85939f;
+
+            }
+          }
+        }
+      }
+      .follow {
+        margin-top: -10px;
+        li {
+          a {
+            text-align: center;
+            clear: both;
+            float: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            margin: 10px 0;
+            &.fb {
+              background-color: #3b5998;
+
+            }
+            &.tw {
+              background-color: #00a0d1;
+
+            }
+            &.yt {
+              background-color: #c4302b;
+
+            }
+            &.in {
+              background-color: #825c48;
+
+            }
+            &.pi {
+              background-color: #a30834;
+
+            }
+          }
+          span {
+            font-size: 12px; /* Приближение из-за подстановки шрифтов */
+            font-weight: 400;
+            line-height: 70px;
+            color: white;
+            margin-left: 10px;
+          }
+        }
+      }
+      .posts{
+        li{
+          font-size: 12px;/* Приближение из-за подстановки шрифтов */
+          font-weight: 400;
+          line-height: 24px;
+          color: white;
+          padding: 0 5px 30px;
+
+          p{
+            color:  #02baab;
+
+          }
+        }
+      }
+    }
+
+  }
+  .footer-bottom{
+    color:  #ffffff;
+    font-size: 12px;/* Приближение из-за подстановки шрифтов */
+    font-weight: 300;
+    line-height: 24px;/* Приближение из-за подстановки шрифтов */
+    text-align: left;
+    clear: both;
+    p{
+      float: left;
+      margin-top: 25px;
+    }
+    a{
+      display: block;
+      text-decoration: none;
+      border: 2px solid $color_strong_cyan;
+      float: right;
+      color: white;
+      font-size: 11px;
+      padding: 12px 35px 12px 12px;
+      background: url("../img/arrow-t.png") no-repeat 93% 45%;
+      margin-top: 15px;
+
+
+
+    }
+  }
+
+}

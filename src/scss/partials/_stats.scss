@@ -2,15 +2,31 @@
 
 .stats{
   background: $color_strong_cyan;
-  h2{
-    color: $color_white;
-  }
+  padding-bottom: 100px;
   .stats-row{
     width: 100%;
     text-align: center;
+    //overflow: auto;
+    .dots{
+      width: 12.5%;
+      margin-right:-0.36em ;
+      height: 210px;
+      height: 250px;
+      float: left;
+      span{
+        display: inline-block;
+
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: white;
+        margin: 125px 10px ;
+      }
+    }
     .stats-tumb{
       float: left;
-      width: 33.33333%;
+
+      width: 25%;
       color: white;
       .stats-tumb-counter{
         font-weight: 300;

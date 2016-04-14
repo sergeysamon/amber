@@ -1,0 +1,96 @@
+@import "../modules/colors";
+
+.team-row{
+  .team-person{
+    display: inline-block;
+    border: 1px solid #eeeeee;
+    background-color:  #ffffff;
+    width: 210px;
+    height: 380px;
+    position: relative;
+    background: url("../img/fake-280.png") center;
+    background-size: cover;
+    overflow: hidden;
+    margin: 0 15px;
+
+    .team-person-text{
+      border: 1px solid #eeeeee;
+      position: absolute;
+      top: 130px;
+      left: 37px;
+      z-index: 1;
+      width: 136px;
+      //height: 60px;
+      padding: 14px 0;
+      background: white;
+      transition: 0.4s;
+
+
+
+      h3{
+        color: $color_strong_cyan;
+        font-size: 14px;
+      }
+      span{
+        color:  #c4c4c4;
+        font-size: 12px;
+      }
+    }
+    .team-person-info{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 220px;
+      position: absolute;
+      bottom: 0;
+      background: white;
+      z-index: 0;
+      transition: 0.4s;
+
+
+      p{
+        padding: 0 25px 30px;
+        display: block;
+        color:  #3b4954;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 24px;
+        transition: 0.4s;
+
+
+      }
+    }
+    .team-person-btn{
+      position: absolute;
+      bottom: 32px;
+      left: 37px;
+      border: 2px solid $color_strong_cyan;
+      background: white;
+      width: 136px;
+      height: 40px;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 14px;
+      color: $color_strong_cyan;
+      transition: 0.4s;
+      z-index: 5;
+
+    }
+  }
+  .cyan-active{
+    background: $color_strong_cyan !important;
+    color: white !important;
+  }
+   .cyan-active ~ .team-person-info{
+    bottom: -118px;
+  }
+
+  .cyan-active ~ .team-person-info > p{
+    opacity: 0;
+  }
+  .cyan-active ~ .team-person-text{
+    opacity: 0;
+    top: -50px;
+  }
+
+}
