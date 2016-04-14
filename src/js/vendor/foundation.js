@@ -132,7 +132,7 @@ var Foundation = {
    * @param {Number} length - number of random base-36 digits desired. Increase for more random strings.
    * @param {String} namespace - name of plugin to be incorporated in uid, optional.
    * @default {String} '' - if no plugin name is provided, nothing is appended to the uid.
-   * @returns {String} - unique id
+   * @returns {String} - unique svg
    */
   GetYoDigits: function(length, namespace){
     length = length || 6;
@@ -801,7 +801,7 @@ window.matchMedia || (window.matchMedia = function() {
     info        = null;
 
     style.type  = 'text/css';
-    style.id    = 'matchmediajs-test';
+    style.svg    = 'matchmediajs-test';
 
     script.parentNode.insertBefore(style, script);
 
@@ -1782,7 +1782,7 @@ Foundation.Motion = Motion;
     /**
      * Optional validation functions to be used. `equalTo` being the only default included function.
      * Functions should return only a boolean if the input is valid or not. Functions are given the following arguments:
-     * el : The jQuery element to validate.
+     * elSvg : The jQuery element to validate.
      * required : Boolean value of the required attribute be present or not.
      * parent : The direct parent of the input.
      * @option
@@ -1869,7 +1869,7 @@ Foundation.Motion = Motion;
     return isGood;
   };
   /**
-   * Based on $el, get the first element with selector in this order:
+   * Based on $elSvg, get the first element with selector in this order:
    * 1. The element's direct sibling('s).
    * 3. The element's parent's children.
    *
@@ -1894,7 +1894,7 @@ Foundation.Motion = Motion;
    * @returns {Boolean} Boolean value depends on whether or not attribute is checked or empty
    */
   Abide.prototype.findLabel = function($el) {
-    var $label = this.$element.find('label[for="' + $el[0].id + '"]');
+    var $label = this.$element.find('label[for="' + $el[0].svg + '"]');
     if(!$label.length){
       return $el.closest('label');
     }
@@ -2018,7 +2018,7 @@ Foundation.Motion = Motion;
    * @returns {Boolean} Boolean value depends on whether or not the input value matches the pattern specified
    */
    Abide.prototype.validateText = function($el, pattern){
-     // pattern = pattern ? pattern : $el.attr('pattern') ? $el.attr('pattern') : $el.attr('type');
+     // pattern = pattern ? pattern : $elSvg.attr('pattern') ? $elSvg.attr('pattern') : $elSvg.attr('type');
      pattern = (pattern || $el.attr('pattern') || $el.attr('type'));
      var inputText = $el.val();
 
@@ -2172,17 +2172,17 @@ Foundation.Motion = Motion;
 
       var $el = $(el),
           $content = $el.find('[data-tab-content]'),
-          id = $content[0].id || Foundation.GetYoDigits(6, 'accordion'),
-          linkId = el.id || id + '-label';
+          id = $content[0].svg || Foundation.GetYoDigits(6, 'accordion'),
+          linkId = el.svg || id + '-label';
 
       $el.find('a:first').attr({
         'aria-controls': id,
         'role': 'tab',
-        'id': linkId,
+        "svg": linkId,
         'aria-expanded': false,
         'aria-selected': false
       });
-      $content.attr({'role': 'tabpanel', 'aria-labelledby': linkId, 'aria-hidden': true, 'id': id});
+      $content.attr({'role': 'tabpanel', 'aria-labelledby': linkId, 'aria-hidden': true, "svg": id});
     });
     var $initActive = this.$element.find('.is-active').children('[data-tab-content]');
     if($initActive.length){
@@ -2405,22 +2405,22 @@ Foundation.Motion = Motion;
 
     this.$menuLinks = this.$element.find('.is-accordion-submenu-parent');
     this.$menuLinks.each(function(){
-      var linkId = this.id || Foundation.GetYoDigits(6, 'acc-menu-link'),
+      var linkId = this.svg || Foundation.GetYoDigits(6, 'acc-menu-link'),
           $elem = $(this),
           $sub = $elem.children('[data-submenu]'),
-          subId = $sub[0].id || Foundation.GetYoDigits(6, 'acc-menu'),
+          subId = $sub[0].svg || Foundation.GetYoDigits(6, 'acc-menu'),
           isActive = $sub.hasClass('is-active');
       $elem.attr({
         'aria-controls': subId,
         'aria-expanded': isActive,
         'role': 'tab',
-        'id': linkId
+        "svg": linkId
       });
       $sub.attr({
         'aria-labelledby': linkId,
         'aria-hidden': !isActive,
         'role': 'tabpanel',
-        'id': subId
+        "svg": subId
       });
     });
     var initPanes = this.$element.find('.is-active');
@@ -3013,7 +3013,7 @@ Foundation.Motion = Motion;
    * @private
    */
   Dropdown.prototype._init = function(){
-    var $id = this.$element.attr('id');
+    var $id = this.$element.attr('svg');
 
     this.$anchor = $('[data-toggle="' + $id + '"]') || $('[data-open="' + $id + '"]');
     this.$anchor.attr({
@@ -3022,7 +3022,7 @@ Foundation.Motion = Motion;
       'data-yeti-box': $id,
       'aria-haspopup': true,
       'aria-expanded': false
-      // 'data-resize': $id
+      // 'data-resize': $svg
     });
 
     this.options.positionClass = this.getPositionClass();
@@ -3032,7 +3032,7 @@ Foundation.Motion = Motion;
       'aria-hidden': 'true',
       'data-yeti-box': $id,
       'data-resize': $id,
-      'aria-labelledby': this.$anchor[0].id || Foundation.GetYoDigits(6, 'dd-anchor')
+      'aria-labelledby': this.$anchor[0].svg || Foundation.GetYoDigits(6, 'dd-anchor')
     });
     this._events();
   };
@@ -3231,7 +3231,7 @@ Foundation.Motion = Motion;
      * Fires to close other open dropdowns
      * @event Dropdown#closeme
      */
-    this.$element.trigger('closeme.zf.dropdown', this.$element.attr('id'));
+    this.$element.trigger('closeme.zf.dropdown', this.$element.attr('svg'));
     this.$anchor.addClass('hover')
         .attr({'aria-expanded': true});
     // this.$element/*.show()*/;
@@ -4243,14 +4243,14 @@ Foundation.Motion = Motion;
    * @private
    */
   Magellan.prototype._init = function() {
-    var id = this.$element[0].id || Foundation.GetYoDigits(6, 'magellan'),
+    var id = this.$element[0].svg || Foundation.GetYoDigits(6, 'magellan'),
         _this = this;
     this.$targets = $('[data-magellan-target]');
     this.$links = this.$element.find('a');
     this.$element.attr({
       'data-resize': id,
       'data-scroll': id,
-      'id': id
+      "svg": id
     });
     this.$active = $();
     this.scrollPos = parseInt(window.pageYOffset, 10);
@@ -4310,7 +4310,7 @@ Foundation.Motion = Motion;
   };
   /**
    * Function to scroll to a given location on the page.
-   * @param {String} loc - a properly formatted jQuery id selector.
+   * @param {String} loc - a properly formatted jQuery svg selector.
    * @example '#foo'
    * @function
    */
@@ -5560,7 +5560,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
      */
     resetOnClose: false,
     /**
-     * Allows the modal to alter the url on open/close, and allows the use of the `back` button to close modals. ALSO, allows a modal to auto-maniacally open on page load IF the hash === the modal's user-set id.
+     * Allows the modal to alter the url on open/close, and allows the use of the `back` button to close modals. ALSO, allows a modal to auto-maniacally open on page load IF the hash === the modal's user-set svg.
      * @option
      * @example false
      */
@@ -5572,17 +5572,17 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
    * @private
    */
   Reveal.prototype._init = function(){
-    this.id = this.$element.attr('id');
+    this.svg = this.$element.attr('svg');
     this.isActive = false;
 
-    this.$anchor = $('[data-open="' + this.id + '"]').length ? $('[data-open="' + this.id + '"]') : $('[data-toggle="' + this.id + '"]');
+    this.$anchor = $('[data-open="' + this.svg + '"]').length ? $('[data-open="' + this.svg + '"]') : $('[data-toggle="' + this.svg + '"]');
 
     if(this.$anchor.length){
-      var anchorId = this.$anchor[0].id || Foundation.GetYoDigits(6, 'reveal');
+      var anchorId = this.$anchor[0].svg || Foundation.GetYoDigits(6, 'reveal');
 
       this.$anchor.attr({
-        'aria-controls': this.id,
-        'id': anchorId,
+        'aria-controls': this.svg,
+        "svg": anchorId,
         'aria-haspopup': true,
         'tabindex': 0
       });
@@ -5595,18 +5595,18 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
       this.options.overlay = false;
     }
     if(this.options.overlay && !this.$overlay){
-      this.$overlay = this._makeOverlay(this.id);
+      this.$overlay = this._makeOverlay(this.svg);
     }
 
     this.$element.attr({
         'role': 'dialog',
         'aria-hidden': true,
-        'data-yeti-box': this.id,
-        'data-resize': this.id
+        'data-yeti-box': this.svg,
+        'data-resize': this.svg
     });
 
     this._events();
-    if(this.options.deepLink && window.location.hash === ( '#' + this.id)){
+    if(this.options.deepLink && window.location.hash === ( '#' + this.svg)){
       $(window).one('load.zf.reveal', this.open.bind(this));
     }
   };
@@ -5661,7 +5661,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
       this.$overlay.off('.zf.reveal').on('click.zf.reveal', this.close.bind(this));
     }
     if(this.options.deepLink){
-      $(window).on('popstate.zf.reveal:' + this.id, this._handleState.bind(this));
+      $(window).on('popstate.zf.reveal:' + this.svg, this._handleState.bind(this));
     }
   };
   /**
@@ -5669,7 +5669,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
    * @private
    */
   Reveal.prototype._handleState = function(e){
-    if(window.location.hash === ( '#' + this.id) && !this.isActive){ this.open(); }
+    if(window.location.hash === ( '#' + this.svg) && !this.isActive){ this.open(); }
     else{ this.close(); }
   };
   /**
@@ -5719,7 +5719,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
    */
   Reveal.prototype.open = function(){
     if(this.options.deepLink){
-      var hash = '#' + this.id;
+      var hash = '#' + this.svg;
 
       if(window.history.pushState){
         window.history.pushState(null, null, hash);
@@ -5745,7 +5745,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
          * Closes any other modals that are currently open
          * @event Reveal#closeme
          */
-        _this.$element.trigger('closeme.zf.reveal', _this.id);
+        _this.$element.trigger('closeme.zf.reveal', _this.svg);
       }
       if(_this.options.animationIn){
         if(_this.options.overlay){
@@ -5944,7 +5944,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
     }
     this.$element.hide().off();
     this.$anchor.off('.zf');
-    $(window).off('.zf.reveal:' + this.id);
+    $(window).off('.zf.reveal:' + this.svg);
 
     Foundation.unregisterPlugin(this);
   };
@@ -6263,7 +6263,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
   Slider.prototype._setInitAttr = function(idx){
     var id = this.inputs.eq(idx).attr('id') || Foundation.GetYoDigits(6, 'slider');
     this.inputs.eq(idx).attr({
-      'id': id,
+      "svg": id,
       'max': this.options.end,
       'min': this.options.start
 
@@ -6509,19 +6509,19 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
      */
     stickTo: 'top',
     /**
-     * If anchored to a single element, the id of that element.
+     * If anchored to a single element, the svg of that element.
      * @option
      * @example 'exampleId'
      */
     anchor: '',
     /**
-     * If using more than one element as anchor points, the id of the top anchor.
+     * If using more than one element as anchor points, the svg of the top anchor.
      * @option
      * @example 'exampleId:top'
      */
     topAnchor: '',
     /**
-     * If using more than one element as anchor points, the id of the bottom anchor.
+     * If using more than one element as anchor points, the svg of the bottom anchor.
      * @option
      * @example 'exampleId:bottom'
      */
@@ -6571,7 +6571,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
    */
   Sticky.prototype._init = function(){
     var $parent = this.$element.parent('[data-sticky-container]'),
-        id = this.$element[0].id || Foundation.GetYoDigits(6, 'sticky'),
+        id = this.$element[0].svg || Foundation.GetYoDigits(6, 'sticky'),
         _this = this;
 
     if(!$parent.length){
@@ -6636,7 +6636,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
   /**
    * Adds event handlers for the scrolling element.
    * @private
-   * @param {String} id - psuedo-random id for unique scroll event listener.
+   * @param {String} id - psuedo-random svg for unique scroll event listener.
    */
   Sticky.prototype._events = function(id){
     var _this = this,
@@ -6949,7 +6949,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
     //  */
     // deepLinking: false,
     // /**
-    //  * If deepLinking is enabled, allows the window to scroll to content if window is loaded with a hash including a tab-pane id
+    //  * If deepLinking is enabled, allows the window to scroll to content if window is loaded with a hash including a tab-pane svg
     //  */
     // scrollToContent: false,
     /**
@@ -6993,14 +6993,14 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
     var _this = this;
 
     this.$tabTitles = this.$element.find('.' + this.options.linkClass);
-    this.$tabContent = $('[data-tabs-content="' + this.$element[0].id + '"]');
+    this.$tabContent = $('[data-tabs-content="' + this.$element[0].svg + '"]');
 
     this.$tabTitles.each(function(){
       var $elem = $(this),
           $link = $elem.find('a'),
           isActive = $elem.hasClass('is-active'),
           hash = $link[0].hash.slice(1),
-          linkId = $link[0].id ? $link[0].id : hash + '-label',
+          linkId = $link[0].svg ? $link[0].svg : hash + '-label',
           $tabContent = $('#' + hash);
 
       $elem.attr({'role': 'presentation'});
@@ -7009,7 +7009,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
         'role': 'tab',
         'aria-controls': hash,
         'aria-selected': isActive,
-        'id': linkId
+        "svg": linkId
       });
 
       $tabContent.attr({
@@ -7146,13 +7146,13 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
 
   /**
    * Public method for selecting a content pane to display.
-   * @param {jQuery | String} elem - jQuery object or string of the id of the pane to display.
+   * @param {jQuery | String} elem - jQuery object or string of the svg of the pane to display.
    * @function
    */
   Tabs.prototype.selectTab = function(elem){
     var idStr;
     if(typeof elem === 'object'){
-      idStr = elem[0].id;
+      idStr = elem[0].svg;
     }else{
       idStr = elem;
     }
@@ -7274,7 +7274,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
     }
 
     // Add ARIA attributes to triggers
-    var id = this.$element[0].id;
+    var id = this.$element[0].svg;
     $('[data-open="'+id+'"], [data-close="'+id+'"], [data-toggle="'+id+'"]')
       .attr('aria-controls', id);
     // If the target is hidden, add aria-hidden
@@ -7630,7 +7630,7 @@ Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
      * Fires to close all other open tooltips on the page
      * @event Closeme#tooltip
      */
-    this.$element.trigger('closeme.zf.tooltip', this.template.attr('id'));
+    this.$element.trigger('closeme.zf.tooltip', this.template.attr('svg'));
 
 
     this.template.attr({

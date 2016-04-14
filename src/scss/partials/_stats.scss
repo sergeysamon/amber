@@ -1,7 +1,25 @@
 @import "../modules/colors";
+
 .stats{
   background: $color_strong_cyan;
-
-
-
+  h2{
+    color: $color_white;
+  }
+  .stats-row{
+    width: 100%;
+    text-align: center;
+    .stats-tumb{
+      float: left;
+      width: 33.33333%;
+      color: white;
+      .stats-tumb-counter{
+        font-weight: 300;
+        font-size: 48px;
+      }
+      .stats-tumb-text{
+        font-size: 18px;
+        font-weight: 300;
+      }
+    }
+  }
 }

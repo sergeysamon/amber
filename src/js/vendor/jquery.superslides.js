@@ -185,7 +185,7 @@
                         if ($(this).is('img')) {
                             $(this).wrap('<div>');
 
-                            // move id attribute
+                            // move svg attribute
                             var id = $(this).attr('id');
                             $(this).removeAttr('id');
                             $(this).parent().attr('id', id);
@@ -367,7 +367,7 @@
                 var slide_number = i + 1,
                     href = slide_number,
                     $slide = that.$container.children().eq(i),
-                    slide_id = $slide.attr('id');
+                    slide_id = $slide.attr('svg');
 
                 if (slide_id) {
                     href = slide_id;

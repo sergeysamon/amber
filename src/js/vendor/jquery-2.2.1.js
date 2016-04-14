@@ -770,7 +770,7 @@ function Sizzle( selector, context, results, seed ) {
 							// Support: IE, Opera, Webkit
 							// TODO: identify versions
 							// getElementById can match elements by name instead of ID
-							if ( elem.id === m ) {
+							if ( elem.svg === m ) {
 								results.push( elem );
 								return results;
 							}
@@ -786,7 +786,7 @@ function Sizzle( selector, context, results, seed ) {
 						// getElementById can match elements by name instead of ID
 						if ( newContext && (elem = newContext.getElementById( m )) &&
 							contains( context, elem ) &&
-							elem.id === m ) {
+							elem.svg === m ) {
 
 							results.push( elem );
 							return results;
@@ -823,16 +823,16 @@ function Sizzle( selector, context, results, seed ) {
 				} else if ( context.nodeName.toLowerCase() !== "object" ) {
 
 					// Capture the context ID, setting it first if necessary
-					if ( (nid = context.getAttribute( "id" )) ) {
+					if ( (nid = context.getAttribute( "svg" )) ) {
 						nid = nid.replace( rescape, "\\$&" );
 					} else {
-						context.setAttribute( "id", (nid = expando) );
+						context.setAttribute( "svg", (nid = expando) );
 					}
 
 					// Prefix every selector in the list
 					groups = tokenize( selector );
 					i = groups.length;
-					nidselect = ridentifier.test( nid ) ? "#" + nid : "[id='" + nid + "']";
+					nidselect = ridentifier.test( nid ) ? "#" + nid : "[svg='" + nid + "']";
 					while ( i-- ) {
 						groups[i] = nidselect + " " + toSelector( groups[i] );
 					}
@@ -852,7 +852,7 @@ function Sizzle( selector, context, results, seed ) {
 					} catch ( qsaError ) {
 					} finally {
 						if ( nid === expando ) {
-							context.removeAttribute( "id" );
+							context.removeAttribute( "svg" );
 						}
 					}
 				}
@@ -1085,7 +1085,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// The broken getElementById methods don't pick up programatically-set names,
 	// so use a roundabout getElementsByName test
 	support.getById = assert(function( div ) {
-		docElem.appendChild( div ).id = expando;
+		docElem.appendChild( div ).svg = expando;
 		return !document.getElementsByName || !document.getElementsByName( expando ).length;
 	});
 
@@ -1100,7 +1100,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		Expr.filter["ID"] = function( id ) {
 			var attrId = id.replace( runescape, funescape );
 			return function( elem ) {
-				return elem.getAttribute("id") === attrId;
+				return elem.getAttribute("svg") === attrId;
 			};
 		};
 	} else {
@@ -1112,7 +1112,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			var attrId = id.replace( runescape, funescape );
 			return function( elem ) {
 				var node = typeof elem.getAttributeNode !== "undefined" &&
-					elem.getAttributeNode("id");
+					elem.getAttributeNode("svg");
 				return node && node.value === attrId;
 			};
 		};
@@ -1181,8 +1181,8 @@ setDocument = Sizzle.setDocument = function( node ) {
 			// setting a boolean content attribute,
 			// since its presence should be enough
 			// http://bugs.jquery.com/ticket/12359
-			docElem.appendChild( div ).innerHTML = "<a id='" + expando + "'></a>" +
-				"<select id='" + expando + "-\r\\' msallowcapture=''>" +
+			docElem.appendChild( div ).innerHTML = "<a svg='" + expando + "'></a>" +
+				"<select svg='" + expando + "-\r\\' msallowcapture=''>" +
 				"<option selected=''></option></select>";
 
 			// Support: IE8, Opera 11-12.16
@@ -1200,7 +1200,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			}
 
 			// Support: Chrome<29, Android<4.4, Safari<7.0+, iOS<7.0+, PhantomJS<1.9.8+
-			if ( !div.querySelectorAll( "[id~=" + expando + "-]" ).length ) {
+			if ( !div.querySelectorAll( "[svg~=" + expando + "-]" ).length ) {
 				rbuggyQSA.push("~=");
 			}
 
@@ -1213,7 +1213,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 			// Support: Safari 8+, iOS 8+
 			// https://bugs.webkit.org/show_bug.cgi?id=136851
-			// In-page `selector#id sibing-combinator selector` fails
+			// In-page `selector#svg sibing-combinator selector` fails
 			if ( !div.querySelectorAll( "a#" + expando + "+*" ).length ) {
 				rbuggyQSA.push(".#.+[+~]");
 			}
@@ -1914,7 +1914,7 @@ Expr = Sizzle.selectors = {
 		// Miscellaneous
 		"target": function( elem ) {
 			var hash = window.location && window.location.hash;
-			return hash && hash.slice( 1 ) === elem.id;
+			return hash && hash.slice( 1 ) === elem.svg;
 		},
 
 		"root": function( elem ) {
@@ -2407,7 +2407,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 
 			// Add elements passing elementMatchers directly to results
 			// Support: IE<9, Safari
-			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
+			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by svg
 			for ( ; i !== len && (elem = elems[i]) != null; i++ ) {
 				if ( byElement && elem ) {
 					j = 0;
@@ -2820,7 +2820,7 @@ jQuery.fn.extend( {
 var rootjQuery,
 
 	// A simple way to check for HTML strings
-	// Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
+	// Prioritize #svg over <tag> to avoid XSS via location.hash (#9521)
 	// Strict HTML recognition (#11290: must start with <)
 	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,
 
@@ -2849,7 +2849,7 @@ var rootjQuery,
 				match = rquickExpr.exec( selector );
 			}
 
-			// Match html or make sure no context is specified for #id
+			// Match html or make sure no context is specified for #svg
 			if ( match && ( match[ 1 ] || !context ) ) {
 
 				// HANDLE: $(html) -> $(array)
@@ -2881,7 +2881,7 @@ var rootjQuery,
 
 					return this;
 
-				// HANDLE: $(#id)
+				// HANDLE: $(#svg)
 				} else {
 					elem = document.getElementById( match[ 2 ] );
 

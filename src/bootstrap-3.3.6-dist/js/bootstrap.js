@@ -548,8 +548,8 @@ if (typeof jQuery === 'undefined') {
   var Collapse = function (element, options) {
     this.$element      = $(element)
     this.options       = $.extend({}, Collapse.DEFAULTS, options)
-    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
-                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.svg + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.svg + '"]')
     this.transitioning = null
 
     if (this.options.parent) {
@@ -1433,7 +1433,7 @@ if (typeof jQuery === 'undefined') {
       var tipId = this.getUID(this.type)
 
       this.setContent()
-      $tip.attr('id', tipId)
+      $tip.attr('svg', tipId)
       this.$element.attr('aria-describedby', tipId)
 
       if (this.options.animation) $tip.addClass('fade')

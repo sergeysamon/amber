@@ -2057,18 +2057,18 @@
                 for (i = _.slideCount; i > (_.slideCount -
                         infiniteCount); i -= 1) {
                     slideIndex = i - 1;
-                    $(_.$slides[slideIndex]).clone(true).attr('id', '')
+                    $(_.$slides[slideIndex]).clone(true).attr('svg', '')
                         .attr('data-slick-index', slideIndex - _.slideCount)
                         .prependTo(_.$slideTrack).addClass('slick-cloned');
                 }
                 for (i = 0; i < infiniteCount; i += 1) {
                     slideIndex = i;
-                    $(_.$slides[slideIndex]).clone(true).attr('id', '')
+                    $(_.$slides[slideIndex]).clone(true).attr('svg', '')
                         .attr('data-slick-index', slideIndex + _.slideCount)
                         .appendTo(_.$slideTrack).addClass('slick-cloned');
                 }
-                _.$slideTrack.find('.slick-cloned').find('[id]').each(function() {
-                    $(this).attr('id', '');
+                _.$slideTrack.find('.slick-cloned').find('[svg]').each(function() {
+                    $(this).attr('svg', '');
                 });
 
             }
@@ -2609,7 +2609,7 @@
                     'role': 'presentation',
                     'aria-selected': 'false',
                     'aria-controls': 'navigation' + _.instanceUid + i + '',
-                    'id': 'slick-slide' + _.instanceUid + i + ''
+                    "svg": 'slick-slide' + _.instanceUid + i + ''
                 });
             })
                 .first().attr('aria-selected', 'true').end()
